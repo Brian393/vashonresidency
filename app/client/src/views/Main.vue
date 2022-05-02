@@ -120,7 +120,7 @@
           </div>
         </template>
 
-        <v-spacer></v-spacer><v-spacer></v-spacer>
+        <v-spacer></v-spacer><v-spacer></v-spacer><v-spacer></v-spacer>
 
         <span class="title pr-5"></span>
         <v-btn icon @click.stop="sidebarState = !sidebarState"
