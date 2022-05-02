@@ -95,7 +95,7 @@
               "url": "https://ecotopia.today/vashon_tiles2/{z}/{x}/{y}.png",
               "minResolution": 0.125,
               "maxResolution": 10,
-              "opacity": 0.8,
+              "opacity": 0.99,
               "queryable": false,
               "displayInLegend": true,
               "legendDisplayName": "Satellite image",
