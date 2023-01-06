@@ -7,74 +7,46 @@
         <v-spacer></v-spacer>
       </v-app-bar>
       <v-divider></v-divider>
-      <v-progress-linear
-        :active="isUploadInProgress"
-        indeterminate
-        :color="color"
-      ></v-progress-linear>
+      <v-progress-linear :active="isUploadInProgress" indeterminate :color="color"></v-progress-linear>
 
-      <v-tabs
-        v-if="type === 'audio' || type === 'image'"
-        v-model="tab"
-        fixed-tabs
-      >
-        <v-tab>
-          Upload File
-        </v-tab>
-        <v-tab>
-          Add Link
-        </v-tab>
+      <v-card-text v-if="type === 'audio' || type === 'image'">
+        <v-alert dense class="mx-2 my-1" v-if="isUploadedSuccessful === true" type="success">
+          File uploaded. Click apply to insert it!
+        </v-alert>
+        <v-alert dense type="error" v-if="isUploadedSuccessful === false"> File can't upload. </v-alert>
 
-        <v-tabs-items v-model="tab">
-          <v-divider></v-divider>
-
-          <v-tab-item>
-            <v-alert
-              dense
-              class="mx-2 my-1"
-              v-if="isUploadedSuccessful === true"
-              type="success"
-            >
-              File uploaded. Click apply to insert it!
-            </v-alert>
-            <v-alert dense type="error" v-if="isUploadedSuccessful === false">
-              File can't upload.
-            </v-alert>
-            <v-file-input
-              v-if="type === 'audio'"
-              :disabled="isUploadInProgress"
-              v-model="file"
-              @change="readFile"
-              @click:clear="clearFile"
-              clearable
-              prepend-icon="music_video"
-              class="mx-4 mt-4"
-              accept="audio/*"
-              label="Audio File input"
-            ></v-file-input>
-            <v-file-input
-              v-if="type === 'image'"
-              :disabled="isUploadInProgress"
-              v-model="file"
-              @change="readFile"
-              @click:clear="clearFile"
-              clearable
-              prepend-icon="image"
-              class="mx-4 mt-4"
-              accept="image/png, image/jpeg"
-              label="Image File input"
-            ></v-file-input>
-          </v-tab-item>
-          <v-tab-item>
-            <v-text-field
-              v-model="urlSrc"
-              class="mx-4 mt-4"
-              prepend-icon="link"
-              label="Paste URL"
+        <v-text-field
+          class="mt-4"
+          v-model="urlSrc"
+          clear-icon="mdi-close-circle"
+          clearable
+          label="Paste URL*"
+          :disabled="isUploadInProgress"
+        >
+          <template slot="append-outer">
+            <v-tooltip left>
+              <template v-slot:activator="{on}">
+                <v-icon
+                  :disabled="false"
+                  class="ml-2 pl-2 lock-button"
+                  style="cursor: pointer"
+                  @click="toggleFileUpload"
+                  v-on="on"
+                >
+                  fas fa-upload
+                </v-icon> </template
+              ><span>Click to upload</span>
+            </v-tooltip>
+            <input
+              ref="fileUploader"
+              class="d-none"
+              type="file"
+              :accept="`${type === 'audio' ? 'audio/*' : 'image/*'}`"
+              @change="onFileUploadChanged"
             />
-          </v-tab-item>
-        </v-tabs-items>
-      </v-tabs>
+          </template>
+        </v-text-field>
+      </v-card-text>
 
       <v-card-text v-if="type === 'iframe'">
         <v-text-field class="mt-4" v-model="urlSrc" id="url" label="URL" />
@@ -83,30 +55,17 @@
       <v-divider></v-divider>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn text color="error" @click="show = false">
-          Close
-        </v-btn>
-        <v-btn
-          :disabled="
-            (tab === 1 && !urlSrc) ||
-              (tab === 0 && !s3Src) ||
-              (tab === null && !urlSrc)
-          "
-          color="primary"
-          text
-          @click="insert"
-        >
-          Apply
-        </v-btn>
+        <v-btn text color="error" @click="show = false"> Close </v-btn>
+        <v-btn :disabled="!urlSrc" color="primary" text @click="insert"> Apply </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 <script>
-import { parseVideoUrl } from '../../utils/Helpers';
+import axios from 'axios';
+import {parseVideoUrl} from '../../utils/Helpers';
 
 import authHeader from '../../services/auth-header';
-import axios from 'axios';
 
 export default {
   data() {
@@ -116,24 +75,23 @@ export default {
       file: null,
       tab: null,
       urlSrc: '',
-      s3Src: '',
       command: null,
       show: false,
       data: {
         image: {
           toolbar_icon: 'image',
-          toolbar_title: 'Image Insert'
+          toolbar_title: 'Image Insert',
         },
         audio: {
           toolbar_icon: 'music_video',
-          toolbar_title: 'Audio Insert'
+          toolbar_title: 'Audio Insert',
         },
         iframe: {
           toolbar_icon: 'video_library',
-          toolbar_title: 'Video Insert'
-        }
+          toolbar_title: 'Video Insert',
+        },
       },
-      color: this.$appConfig.app.color.primary
+      color: this.$appConfig.app.color.primary,
     };
   },
   methods: {
@@ -149,35 +107,44 @@ export default {
       if (this.type === 'iframe') {
         src = parseVideoUrl(this.urlSrc);
       } else {
-        src = this.tab === 0 ? this.s3Src : this.urlSrc;
+        src = this.urlSrc;
       }
       const data = {
         command: this.command,
         data: {
-          src
-        }
+          src,
+        },
       };
 
       this.$emit('onConfirm', data);
       this.show = false;
     },
-    readFile(file) {
-      if (file) {
+    openFileUpload() {
+      window.addEventListener('focus', () => {}, {once: false});
+      this.$refs.fileUploader.click();
+    },
+    onFileUploadChanged(e) {
+      // eslint-disable-next-line prefer-destructuring
+      this.file = e.target.files[0];
+      if (this.file) {
         // UPLOAD IN S3 Bucket.
         const formData = new FormData();
-        if (file) {
-          formData.append('file', file);
+        if (this.file) {
+          formData.append('file', this.file);
         }
         this.isUploadInProgress = true;
         axios
           .post('api/upload', formData, {
-            headers: authHeader()
+            headers: authHeader(),
           })
           .then(res => {
             if (res.data.fileUrl) {
-              this.s3Src = res.data.fileUrl;
+              this.urlSrc = res.data.fileUrl;
               this.isUploadedSuccessful = true;
             }
+            setTimeout(() => {
+              this.isUploadedSuccessful = '';
+            }, 2000);
             this.isUploadInProgress = false;
           })
           .catch(() => {
@@ -186,18 +153,24 @@ export default {
           });
       }
     },
+    toggleFileUpload() {
+      if (this.file) {
+        this.clearFile();
+      } else {
+        this.openFileUpload();
+      }
+    },
     clearFile() {
       this.file = null;
       this.isUploadedSuccessful = '';
-      this.s3Src = '';
     },
     clear() {
       this.tab = null;
       this.type = null;
       this.clearFile();
       this.urlSrc = '';
-    }
+    },
   },
-  computed: {}
+  computed: {},
 };
 </script>

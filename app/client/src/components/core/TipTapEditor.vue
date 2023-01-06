@@ -2,16 +2,13 @@
   <div>
     <media-dialog ref="mediadialog" @onConfirm="addCommand" />
 
-    <tip-tap-expansion-dialog
-      ref="tiptap-expansion-dialog"
-      @onConfirm="addCommand"
-    ></tip-tap-expansion-dialog>
+    <tip-tap-expansion-dialog ref="tiptap-expansion-dialog" @onConfirm="addCommand"></tip-tap-expansion-dialog>
 
     <tiptap-vuetify
       ref="tiptap"
-      style="line-height:1.2;"
+      style="line-height: 1.2"
       class="custom-style"
-      :card-props="{ flat: true }"
+      :card-props="{flat: true}"
       v-model="htmlContent"
       placeholder="Write something"
       :extensions="extensions"
@@ -19,15 +16,70 @@
       @init="onInit"
     >
       <template #toolbar-after class="pb-2">
-        <div style="background-color: #f5f5f5;">
+        <div style="background-color: #f5f5f5">
+          <!-- Align -->
+          <template>
+            <v-tooltip top>
+              <template v-slot:activator="{on}">
+                <v-btn
+                  v-on="on"
+                  :class="{
+                    'ml-4': true,
+                    'tiptap-vuetify-editor__action-render-btn': true,
+                    'v-btn--active': editor.getMarkAttrs('align').textAlign === 'left',
+                  }"
+                  @click="editor.commands.align({textAlign: 'left'})"
+                  small
+                  icon
+                >
+                  <v-icon medium>format_align_left</v-icon>
+                </v-btn>
+              </template>
+              Align Left
+            </v-tooltip>
+            <v-tooltip top>
+              <template v-slot:activator="{on}">
+                <v-btn
+                  v-on="on"
+                  :class="{
+                    'tiptap-vuetify-editor__action-render-btn': true,
+                    'v-btn--active': editor.getMarkAttrs('align').textAlign === 'center',
+                  }"
+                  @click="editor.commands.align({textAlign: 'center'})"
+                  small
+                  icon
+                >
+                  <v-icon>format_align_center</v-icon>
+                </v-btn>
+              </template>
+              Align Center
+            </v-tooltip>
+            <v-tooltip top>
+              <template v-slot:activator="{on}">
+                <v-btn
+                  v-on="on"
+                  :class="{
+                    'tiptap-vuetify-editor__action-render-btn': true,
+                    'v-btn--active': editor.getMarkAttrs('align').textAlign === 'right',
+                  }"
+                  @click="editor.commands.align({textAlign: 'right'})"
+                  small
+                  icon
+                >
+                  <v-icon>format_align_right</v-icon>
+                </v-btn>
+              </template>
+              Align Right
+            </v-tooltip>
+          </template>
+          <span class="mx-3" style="border-right: 1px solid grey"></span>
           <!--You can render the buttons as you wish (you can see in the source code how this is done).-->
           <v-tooltip top>
-            <template v-slot:activator="{ on }">
+            <template v-slot:activator="{on}">
               <v-btn
                 v-on="on"
                 :class="{
-                  'ml-3': true,
-                  'tiptap-vuetify-editor__action-render-btn': true
+                  'tiptap-vuetify-editor__action-render-btn': true,
                 }"
                 @click="openModal('image')"
                 small
@@ -40,11 +92,11 @@
           </v-tooltip>
 
           <v-tooltip top>
-            <template v-slot:activator="{ on }">
+            <template v-slot:activator="{on}">
               <v-btn
                 v-on="on"
                 :class="{
-                  'tiptap-vuetify-editor__action-render-btn': true
+                  'tiptap-vuetify-editor__action-render-btn': true,
                 }"
                 small
                 icon
@@ -56,11 +108,11 @@
             <span>Add Video</span>
           </v-tooltip>
           <v-tooltip top>
-            <template v-slot:activator="{ on }">
+            <template v-slot:activator="{on}">
               <v-btn
                 v-on="on"
                 :class="{
-                  'tiptap-vuetify-editor__action-render-btn': true
+                  'tiptap-vuetify-editor__action-render-btn': true,
                 }"
                 small
                 icon
@@ -72,11 +124,11 @@
             Add audio
           </v-tooltip>
           <v-tooltip top>
-            <template v-slot:activator="{ on }">
+            <template v-slot:activator="{on}">
               <v-btn
                 v-on="on"
                 :class="{
-                  'tiptap-vuetify-editor__action-render-btn': true
+                  'tiptap-vuetify-editor__action-render-btn': true,
                 }"
                 small
                 icon
@@ -88,11 +140,11 @@
             Add Expansion panel
           </v-tooltip>
           <v-tooltip top>
-            <template v-slot:activator="{ on }">
+            <template v-slot:activator="{on}">
               <v-btn
                 v-on="on"
                 :class="{
-                  'tiptap-vuetify-editor__action-render-btn': true
+                  'tiptap-vuetify-editor__action-render-btn': true,
                 }"
                 small
                 icon
@@ -111,18 +163,9 @@
 </template>
 
 <script>
-import { mapFields } from 'vuex-map-fields';
-import { toLonLat } from 'ol/proj';
+import {mapFields} from 'vuex-map-fields';
+import {toLonLat} from 'ol/proj';
 
-import Iframe from './TipTapIframe';
-import Audio from './TipTapAudio';
-import Image from './TipTapImage';
-import Expansion from './TipTapExpansion';
-import MapView from './TipTapMapView';
-
-import MediaDialog from './TipTapMediaDialog';
-import TipTapExpansionDialog from './TipTapExpansionDialog';
-// import the component and the necessary extensions
 import {
   TiptapVuetify,
   Heading,
@@ -138,14 +181,24 @@ import {
   Blockquote,
   HardBreak,
   HorizontalRule,
-  History
+  History,
 } from 'tiptap-vuetify';
+import Iframe from './TipTapIframe';
+import Audio from './TipTapAudio';
+import Image from './TipTapImage';
+import Expansion from './TipTapExpansion';
+import MapView from './TipTapMapView';
+import Align from './TipTapAlign';
+
+import MediaDialog from './TipTapMediaDialog.vue';
+import TipTapExpansionDialog from './TipTapExpansionDialog.vue';
+// import the component and the necessary extensions
 
 export default {
   // specify TiptapVuetify component in "components"
-  components: { TiptapVuetify, MediaDialog, TipTapExpansionDialog },
+  components: {TiptapVuetify, MediaDialog, TipTapExpansionDialog},
   props: {
-    map: { type: Object }
+    map: {type: Object},
   },
   data: () => ({
     editor: null,
@@ -164,45 +217,34 @@ export default {
         Heading,
         {
           options: {
-            levels: [1, 2, 3]
-          }
-        }
+            levels: [1, 2, 3],
+          },
+        },
       ],
       Bold,
       HorizontalRule,
-      HardBreak
+      HardBreak,
     ],
-    nativeExtensions: [
-      new Iframe(),
-      new Audio(),
-      new Image(),
-      new Expansion(),
-      new MapView()
-    ]
+    nativeExtensions: [new Iframe(), new Audio(), new Image(), new Expansion(), new MapView(), new Align()],
   }),
   computed: {
     ...mapFields('map', {
-      htmlContent: 'htmlContent'
-    })
+      htmlContent: 'htmlContent',
+    }),
   },
   methods: {
     openModal(command) {
       if (this.editor) {
         if (command === 'expansion') {
-          this.$refs['tiptap-expansion-dialog'].showModal(
-            this.editor.commands[command],
-            command
-          );
+          this.$refs['tiptap-expansion-dialog'].showModal(this.editor.commands[command], command);
         } else {
-          this.$refs['mediadialog'].showModal(
-            this.editor.commands[command],
-            command
-          );
+          this.$refs.mediadialog.showModal(this.editor.commands[command], command);
         }
       }
     },
     addMapViewLink() {
       let url = window.location.hash;
+      // eslint-disable-next-line prefer-destructuring
       url = url.split('?')[0];
       const center = this.map.getView().getCenter();
       const zoom = this.map.getView().getZoom();
@@ -221,7 +263,7 @@ export default {
       const href = `${url}?center=${centerLonLat.toString()}&zoom=${zoom
         .toFixed(3)
         .toString()}&layers=${visibleLayers.toString()}`;
-      this.editor.commands['mapview']({ href });
+      this.editor.commands.mapview({href});
     },
     addCommand(data) {
       if (data.command !== null) {
@@ -230,8 +272,8 @@ export default {
     },
     onInit(editor) {
       this.editor = editor.editor;
-    }
-  }
+    },
+  },
 };
 </script>
 <style>
