@@ -32,30 +32,10 @@
     "zoom": 1,
     "geoserverWorkspace": "workspace1",
     "resolutions": [
-      156543.03,
-      78271.52,
-      39135.76,
-      19567.88,
-      9783.94,
-      4891.97,
-      2445.98,
-      1222.99,
-      611.5,
-      305.75,
-      152.87,
-      76.437,
-      38.219,
-      19.109,
-      9.5546,
-      4.7773,
-      2.3887,
-      1.1943,
-      0.5972
+      156543.03, 78271.52, 39135.76, 19567.88, 9783.94, 4891.97, 2445.98, 1222.99, 611.5, 305.75, 152.87, 76.437,
+      38.219, 19.109, 9.5546, 4.7773, 2.3887, 1.1943, 0.5972
     ],
-    "center": [
-      0,
-      0
-    ],
+    "center": [0, 0],
     "minResolution": 0.125,
     "maxResolution": 64000,
     "layers": [
@@ -282,30 +262,17 @@
     "groups": {
       "salish_sea": {
         "default": {
-          "layers": [
-            "satellite",
-            "land_polygons_vashon",
-            "seatiles"
-          ],
-          "center": [
-            -123.659,
-            48.829
-          ],
+          "layers": ["satellite", "land_polygons_vashon", "seatiles"],
+          "center": [-123.659, 48.829],
           "resolution": 800,
-          "mobileCenter": [
-            -123.659,
-            48.829
-          ],
+          "mobileCenter": [-123.659, 48.829],
           "mobileResolution": 1240,
           "minResolution": 0,
           "maxResolution": 64000
         },
         "local": {
           "layers": [],
-          "center": [
-            -88.179,
-            41.837
-          ],
+          "center": [-88.179, 41.837],
           "resolution": 2000,
           "mobileResolution": 16000,
           "minResolution": 0,
@@ -313,10 +280,7 @@
         },
         "global": {
           "layers": [],
-          "center": [
-            -12.42,
-            29.84
-          ],
+          "center": [-12.42, 29.84],
           "resolution": 68000,
           "mobileResolution": 80000,
           "minResolution": 0,
@@ -325,32 +289,17 @@
       },
       "vashon_island": {
         "default": {
-          "layers": [
-            "satellite2",
-            "land_polygons2",
-            "seatiles2",
-            "seatiles_purple",
-            "vashontiles"
-          ],
-          "center": [
-            -122.498,
-            47.423
-          ],
+          "layers": ["satellite2", "land_polygons2", "seatiles2", "seatiles_purple", "vashontiles"],
+          "center": [-122.498, 47.423],
           "resolution": 48,
-          "mobileCenter": [
-            -122.498,
-            47.423
-          ],
+          "mobileCenter": [-122.498, 47.423],
           "mobileResolution": 80,
           "minResolution": 0,
           "maxResolution": 64000
         },
         "local": {
           "layers": [],
-          "center": [
-            -88.179,
-            41.837
-          ],
+          "center": [-88.179, 41.837],
           "resolution": 2000,
           "mobileResolution": 16000,
           "minResolution": 0,
@@ -358,10 +307,7 @@
         },
         "global": {
           "layers": [],
-          "center": [
-            -12.42,
-            29.84
-          ],
+          "center": [-12.42, 29.84],
           "resolution": 68000,
           "mobileResolution": 80000,
           "minResolution": 0,
@@ -372,9 +318,7 @@
     "flyToSlideshow": {
       "delayInSecondsForInitialStart": 9000000,
       "delayInSecondsBetweenFrames": 120000,
-      "maplinks": [
-        ""
-      ]
+      "maplinks": [""]
     },
     "defaultActiveGroup": "salish_sea",
     "groupTitles": {
