@@ -67,8 +67,8 @@ const state = {
       hoverBackgroundColor: '#000000',
       anchor: [0.5, 46],
       anchorXUnits: 'fraction',
-      anchorYUnits: 'pixels'
-    }
+      anchorYUnits: 'pixels',
+    },
   },
   postEditLayer: null, // user for
   postFeature: null,
