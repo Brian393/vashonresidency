@@ -613,4 +613,8 @@ export const layersStylePropFn = {
     strokeColor: propertyValue => propertyValue,
     strokeWidth: propertyValue => propertyValue,
   },
+  islands_lg: {
+    strokeColor: propertyValue => propertyValue,
+    fillColor: propertyValue => propertyValue,
+  },
 };
