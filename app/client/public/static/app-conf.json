@@ -178,54 +178,54 @@
         "attributions": "Test attributions",
         "layers": [
           {
-          "type": "VECTORTILE",
-          "name": "islands_sm",
-          "url": "./geoserver/gwc/service/tms/1.0.0/workspace1:islands_sm@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf",
-          "group": "vashon_island",
-          "queryable": false,
-          "displayInLegend": false,
-          "legendDisplayName": "",
-          "format": "MVT",
-          "renderMode": "vector",
-          "visible": true,
-          "zIndex": 0,
-          "minResolution": 8,
-          "maxResolution": 64000,
-          "hoverable": true,
-          "isInteractive": true,
-          "style": {
+            "type": "VECTORTILE",
+            "name": "islands_sm",
+            "url": "./geoserver/gwc/service/tms/1.0.0/workspace1:islands_sm@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf",
+            "group": "vashon_island",
+            "queryable": false,
+            "displayInLegend": false,
+            "legendDisplayName": "",
+            "format": "MVT",
+            "renderMode": "vector",
+            "visible": true,
+            "zIndex": 0,
+            "minResolution": 8,
+            "maxResolution": 64000,
+            "hoverable": true,
+            "isInteractive": true,
+            "style": {
               "strokeColor": "#a63ad4",
               "strokeWidth": 0.2,
               "fillColor": "rgba(166, 58, 212, 0.7)",
               "hoverTextColor": "white",
               "hoverBackgroundColor": "#000000"
-           }
-        },
-        {
-          "type": "VECTORTILE",
-          "name": "islands_lg",
-          "url": "./geoserver/gwc/service/tms/1.0.0/workspace1:islands_lg@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf",
-          "group": "vashon_island",
-          "queryable": true,
-          "format": "MVT",
-          "renderMode": "vector",
-          "visible": true,
-          "displayInLegend": false,
-          "legendDisplayName": "Islands",
-          "zIndex": 0,
-          "minResolution": 8,
-          "maxResolution": 64000,
-          "hoverable": true,
-          "isInteractive": true,
-          "style": {
+            }
+          },
+          {
+            "type": "VECTORTILE",
+            "name": "islands_lg",
+            "url": "./geoserver/gwc/service/tms/1.0.0/workspace1:islands_lg@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf",
+            "group": "vashon_island",
+            "queryable": true,
+            "format": "MVT",
+            "renderMode": "vector",
+            "visible": true,
+            "displayInLegend": false,
+            "legendDisplayName": "Islands",
+            "zIndex": 0,
+            "minResolution": 8,
+            "maxResolution": 64000,
+            "hoverable": true,
+            "isInteractive": true,
+            "style": {
               "strokeColor": "#a63ad4",
               "strokeWidth": 0.2,
               "fillColor": "rgba(166, 58, 212, 0.7)",
               "hoverTextColor": "white",
               "hoverBackgroundColor": "#000000"
+            }
           }
-        }
-      ]
+        ]
       },
       {
         "type": "XYZ",
@@ -334,7 +334,7 @@
           "layers": ["satellite", "land_polygons_vashon", "seatiles", "islands", "osm_bright"],
           "center": [-123.659, 48.829],
           "resolution": 800,
-          "mobileCenter": [-122.760, 48.530],
+          "mobileCenter": [-122.76, 48.53],
           "mobileResolution": 1400,
           "minResolution": 0,
           "maxResolution": 64000
@@ -359,7 +359,7 @@
       "vashon_island": {
         "default": {
           "layers": ["satellite2", "land_polygons2", "seatiles2", "seatiles_purple", "vashontiles", "osm_bright"],
-          "center": [-122.498, 47.420],
+          "center": [-122.498, 47.42],
           "resolution": 80,
           "mobileCenter": [-122.497, 47.42],
           "mobileResolution": 90,
