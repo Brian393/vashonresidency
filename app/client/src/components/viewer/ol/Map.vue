@@ -351,7 +351,7 @@ export default {
       }).extend([attribution]),
       view: new View({
         center: me.center || [0, 0],
-        minResolution: me.minResolution || 0.25,
+        minResolution: me.minResolution || 0,
         maxResolution: me.maxResolution || 64000,
       }),
     });

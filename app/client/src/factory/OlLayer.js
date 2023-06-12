@@ -275,7 +275,7 @@ export const LayerFactory = {
       seriesDisplayName: lConf.seriesDisplayName,
       source: new XyzSource({
         url: lConf.hasOwnProperty('accessToken') ? `${lConf.url}?access_token=${lConf.accessToken}` : lConf.url,
-        maxZoom: lConf.maxZoom || 18,
+        maxZoom: lConf.maxZoom || 21,
         attributions: lConf.attributions,
         tilePixelRatio: lConf.tilePixelRatio || 1,
         crossOrigin: lConf.crossOrigin,
