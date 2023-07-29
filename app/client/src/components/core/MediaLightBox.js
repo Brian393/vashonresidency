@@ -22,7 +22,7 @@ export default class MediaLightBox {
           <span id="mediabox-esc" class="${
             type == 'website' ? 'mediabox-close-website' : 'mediabox-close'
           }" aria-label="close" tabindex="1"></span>
-          <iframe src="{embed}?autoplay=1" frameborder="0" allowfullscreen></iframe>
+          <iframe src="{embed}?autoplay=1&muted=1" frameborder="0" allowfullscreen></iframe>
           ${type == 'website' ? '' : '<span class="mediabox-caption" tabindex="0">{caption}</span>'}
           
           </div>

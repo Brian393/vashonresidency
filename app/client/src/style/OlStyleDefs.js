@@ -617,4 +617,7 @@ export const layersStylePropFn = {
     strokeColor: propertyValue => propertyValue,
     fillColor: propertyValue => propertyValue,
   },
+  videos: {
+    iconUrl: propertyValue => propertyValue,
+  },
 };
