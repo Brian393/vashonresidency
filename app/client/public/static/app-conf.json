@@ -37,7 +37,7 @@
     "geoserverWorkspace": "workspace1",
     "resolutions": [
       156543.03, 78271.52, 39135.76, 19567.88, 9783.94, 4891.97, 2445.98, 1222.99, 611.5, 305.75, 152.87, 76.437,
-      38.219, 19.109, 9.5546, 4.7773, 2.3887, 1.1943, 0.5972, 0.2990, 0.1490
+      38.219, 19.109, 9.5546, 4.7773, 2.3887, 1.1943, 0.5972, 0.299, 0.149
     ],
     "center": [0, 0],
     "minResolution": 0.2,
@@ -179,7 +179,7 @@
         "style": {
           "stylePropFnRef": {
             "iconUrl": "variable1"
-            },
+          },
           "scale": 0.9,
           "hoverTextColor": "white",
           "hoverBackgroundColor": "#15313d"
@@ -353,29 +353,29 @@
         "hoverable": false,
         "legendIcon": "",
         "style": {
-            "label": {
-                "text": "name",
-                "fill": {
-                    "color": "white"
-                },
-                "stroke": {
-                    "color": "rgba( 255, 250, 240, 0.0 )",
-                    "width": 0
-                },
-                "offsetX": -1,
-                "offsetY": 0,
-                "maxResolution": 800,
-                "placement": "point",
-                "textAlign": "center",
-                "textWrap": "normal",
-                "fontType": "Merriweather",
-                "fontSize": "13px",
-                "fontWeight": "normal",
-                "zIndex": 1000
+          "label": {
+            "text": "name",
+            "fill": {
+              "color": "white"
             },
-            "strokeWidth": 1,
-            "strokeColor": "rgba( 108, 130, 225, 1.0 )",
-            "fillColor": "rgba( 108, 130, 225, 0.5 )"
+            "stroke": {
+              "color": "rgba( 255, 250, 240, 0.0 )",
+              "width": 0
+            },
+            "offsetX": -1,
+            "offsetY": 0,
+            "maxResolution": 800,
+            "placement": "point",
+            "textAlign": "center",
+            "textWrap": "normal",
+            "fontType": "Merriweather",
+            "fontSize": "13px",
+            "fontWeight": "normal",
+            "zIndex": 1000
+          },
+          "strokeWidth": 1,
+          "strokeColor": "rgba( 108, 130, 225, 1.0 )",
+          "fillColor": "rgba( 108, 130, 225, 0.5 )"
         }
       },
       {
@@ -608,10 +608,22 @@
     "groups": {
       "vashon_island": {
         "default": {
-          "layers": ["satellite", "seatiles", "vashonmap", "tallytiles", "islands", "aerials", "vashon_final_buffer", "property", "nature_preserves", "videos", "photos"],
+          "layers": [
+            "satellite",
+            "seatiles",
+            "vashonmap",
+            "tallytiles",
+            "islands",
+            "aerials",
+            "vashon_final_buffer",
+            "property",
+            "nature_preserves",
+            "videos",
+            "photos"
+          ],
           "center": [-122.498, 47.42],
           "resolution": 54,
-          "mobileCenter": [-122.480, 47.434],
+          "mobileCenter": [-122.48, 47.434],
           "mobileResolution": 54,
           "minResolution": 0.1,
           "maxResolution": 64000
