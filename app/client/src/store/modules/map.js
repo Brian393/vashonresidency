@@ -64,7 +64,7 @@ const state = {
     style: {
       styleRef: 'htmlLayerStyle',
       hoverTextColor: 'white',
-      hoverBackgroundColor: '#000000',
+      hoverBackgroundColor: '#15313D',
       anchor: [0.5, 46],
       anchorXUnits: 'fraction',
       anchorYUnits: 'pixels',
